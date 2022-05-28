@@ -46,11 +46,7 @@ namespace FBTarjeta
                 configuration.RootPath = "ClientApp/dist";
             });
 
-            //services.AddTransient<IConfigureOptions<SwaggerGenOptions>, ConfigureSwaggerOptions>();
-            //services.AddSwaggerConfig();
-            //services.AddAppSettingsConfig(Configuration);
-            //services.AddSwaggerGen();
-            // Register the Swagger generator, defining 1 or more Swagger documents
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo
@@ -58,12 +54,12 @@ namespace FBTarjeta
                     Version = "v1",
                     Title = "ToDo API",
                     Description = "A simple example ASP.NET Core Web API",
-                    TermsOfService = new Uri("https://example.com/terms"),
+                    TermsOfService = new Uri("https://programacionparaaprender.github.io/mi-pagina-web2/"),
                     Contact = new OpenApiContact
                     {
-                        Name = "Shayne Boyer",
+                        Name = "Programacion para Aprender",
                         Email = string.Empty,
-                        Url = new Uri("https://twitter.com/spboyer"),
+                        Url = new Uri("https://twitter.com/ProgramacionPa1"),
                     },
                     License = new OpenApiLicense
                     {

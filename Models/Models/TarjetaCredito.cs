@@ -18,6 +18,7 @@ namespace Models.Models
         [Required]
         public string Titular { get; set; }
 
+        //[Column(Order = 2, TypeName = "VARCHAR", IsUnique = true)]
         [StringLength(16)]
         [Required]
         public string NumeroTarjeta { get; set; }
@@ -29,6 +30,12 @@ namespace Models.Models
         [StringLength(3)]
         [Required]
         public string CVV { get; set; }
+
+
+        public TarjetaCredito()
+        {
+            this.Id = 0;
+        }
 
         public class Mapeo
         {

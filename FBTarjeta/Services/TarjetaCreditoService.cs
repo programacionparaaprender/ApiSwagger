@@ -16,7 +16,7 @@ namespace FBTarjeta.Services
         }
 
 
-        public Boolean agregarTarjeta(TarjetaCredito _tarjeta)
+        public TarjetaCredito agregarTarjeta(TarjetaCredito _tarjeta)
         {
             int resultado = 0;
             try
@@ -24,13 +24,19 @@ namespace FBTarjeta.Services
                 _applicationBDContext.TarjetaCreditos.Add(_tarjeta);
                 resultado = _applicationBDContext.SaveChanges();
                 if (resultado == 1)
-                    return true;
+                {
+                    int lastId = _applicationBDContext.TarjetaCreditos.Max(x => x.Id);
+                    _tarjeta.Id = lastId;
+                    return _tarjeta;
+                }
                 else
-                    return false;
+                {
+                    return new TarjetaCredito();
+                }
             }
             catch (Exception ex)
             {
-                return false;
+                throw ex;
             }
         }
 
@@ -81,8 +87,8 @@ namespace FBTarjeta.Services
             int resultado = 0;
             try
             {
-                var r = _applicationBDContext.TarjetaCreditos.Where(x => x.Id == TarjetaId).FirstOrDefault();
-                _applicationBDContext.Remove(r);
+                TarjetaCredito Tarjeta = _applicationBDContext.TarjetaCreditos.Where<TarjetaCredito>(x => x.Id == TarjetaId).FirstOrDefault();
+                _applicationBDContext.Remove(Tarjeta);
                 resultado = _applicationBDContext.SaveChanges();
                 if (resultado == 1)
                     return true;

@@ -22,6 +22,8 @@ namespace FBTarjeta.Controllers
         }
         [HttpGet]
         [Route("verNoticias")]
+        [ProducesResponseType(typeof(Noticia), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public IActionResult verNoticias()
         {
             var resultado = _noticiaService.Obtener();
@@ -33,6 +35,8 @@ namespace FBTarjeta.Controllers
 
         [HttpGet]
         [Route("porNoticiaID/{noticiaID}")]
+        [ProducesResponseType(typeof(Noticia), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public IActionResult porNoticiaID(int noticiaID)
         {
             var resultado = _noticiaService.porNoticiaID(noticiaID);
@@ -42,6 +46,8 @@ namespace FBTarjeta.Controllers
         }
         [HttpPost]
         [Route("agregar")]
+        [ProducesResponseType(typeof(Noticia), StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public IActionResult agregar([FromBody] Noticia _noticia)
         {
             try
@@ -54,12 +60,14 @@ namespace FBTarjeta.Controllers
             }
             catch(Exception ex)
             {
-
+                return BadRequest(ex.Message);
             }
-            return BadRequest();
+            return BadRequest("No se guardo");
         }
         [HttpPut]
         [Route("editar")]
+        [ProducesResponseType(typeof(Noticia), StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public IActionResult editar([FromBody] Noticia _noticia)
         {
             try
@@ -73,12 +81,15 @@ namespace FBTarjeta.Controllers
             }
             catch (Exception ex)
             {
+                return BadRequest(ex.Message);
 
             }
             return BadRequest();
         }
         [HttpDelete]
         [Route("eliminar/{noticiaID}")]
+        [ProducesResponseType(typeof(Noticia), StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public IActionResult eliminar(int noticiaID)
         {
             try
@@ -92,20 +103,26 @@ namespace FBTarjeta.Controllers
             }
             catch (Exception ex)
             {
-
+                return BadRequest(ex.Message);
             }
             return BadRequest();
         }
-        
-        
-        
-
 
         [Route("ObtenerNoticiasPorAutor/{autorId}")]
         [HttpGet]
+        [ProducesResponseType(typeof(Noticia), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public IActionResult ObtenerNoticiasPorAutor(int autorId)
         {
-            return Ok(_noticiaService.ObtenerNoticiasPorAutor(autorId));
+            try
+            {
+                return Ok(_noticiaService.ObtenerNoticiasPorAutor(autorId));
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            return BadRequest();
         }
 
     }

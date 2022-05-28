@@ -63,7 +63,7 @@ namespace FBTarjeta.Controllers
 
         [HttpGet]
         [Route("porAutorID/{autorID}")]
-        [ProducesResponseType(typeof(Autor), StatusCodes.Status201Created)]
+        [ProducesResponseType(typeof(Autor), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public IActionResult porNoticiaID(int autorID)
         {
@@ -81,7 +81,7 @@ namespace FBTarjeta.Controllers
 
         [HttpGet]
         [Route("listadoDeAutores")]
-        [ProducesResponseType(typeof(Autor), StatusCodes.Status201Created)]
+        [ProducesResponseType(typeof(Autor), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public IActionResult listadoDeAutores()
         {
