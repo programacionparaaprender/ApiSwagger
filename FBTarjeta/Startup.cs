@@ -52,8 +52,8 @@ namespace FBTarjeta
                 c.SwaggerDoc("v1", new OpenApiInfo
                 {
                     Version = "v1",
-                    Title = "ToDo API",
-                    Description = "A simple example ASP.NET Core Web API",
+                    Title = "Api de Tarjetas de Credito",
+                    Description = "Ejemplo simple de como trabajar swagger en net core",
                     TermsOfService = new Uri("https://programacionparaaprender.github.io/mi-pagina-web2/"),
                     Contact = new OpenApiContact
                     {

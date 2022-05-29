@@ -26,14 +26,18 @@ namespace FBTarjeta.Controllers
         [Route("porTarjetaID/{tarjetaID}")]
         [ProducesResponseType(typeof(TarjetaCredito), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public IActionResult porNoticiaID(int tarjetaID)
+        public IActionResult porTarjetaID(int tarjetaID)
         {
             TarjetaCredito resultado = new TarjetaCredito();
             try {
                 resultado = _tarjetaCreditoService.porTarjetaID(tarjetaID);
+                if (resultado != null)
+                {
+                    return Ok(new { message = "La tarjeta se obtuvo de forma exitosa", data = resultado });
+                }
                 //return Ok("Prueba de que todo funciona");
                 //return HttpResult(200, resultado);
-                return Ok(new { message = "La tarjeta se obtuvo de forma exitosa", data = resultado });
+                return BadRequest(new { message = "La tarjeta no existe" });
             }
             catch (Exception ex)
             {
@@ -69,9 +73,13 @@ namespace FBTarjeta.Controllers
             try
             {
                 resultado = _tarjetaCreditoService.porTarjetaID(id);
+                if(resultado != null)
+                {
+                    return Ok(new { message = "La tarjeta se obtuvo de forma exitosa", data = resultado });
+                }
                 //return Ok("Prueba de que todo funciona");
                 //return HttpResult(200, resultado);
-                return Ok(new { message = "La tarjeta se obtuvo de forma exitosa", data = resultado });
+                return BadRequest(new { message = "La tarjeta no existe" });
             }
             catch (Exception ex)
             {
