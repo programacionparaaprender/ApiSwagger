@@ -38,15 +38,11 @@ namespace FBTarjeta
                 options.AddPolicy("PermitirTodo",
                 acceso => acceso.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
             });
-
             services.AddControllersWithViews();
-            // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {
                 configuration.RootPath = "ClientApp/dist";
             });
-
-
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo

@@ -106,7 +106,7 @@ namespace FBTarjeta.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest(ex.Message);
+                return BadRequest(new { message = ex.Message });
             }
             return BadRequest(new { message = "No se registro", data = resultado });
         }
